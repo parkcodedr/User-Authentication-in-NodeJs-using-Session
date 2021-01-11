@@ -1,68 +1,12 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="utf-8">
-	<title>VerityNG|Home</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- STYLE CSS -->
-	<link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
- <%- include('nav.ejs') -%>
-	<div class="wrapper">
-		<div class="inner">
-			<div class="image-holder">
-				<img src="/registration-form-4.jpg" alt="">
-			</div>
-			<div class="form-login">
-					<a href="/products"><button type="submit">Products</button></a>
-					
-				</div>
-		</div>
-	</div>
-
-	<script src="/js/jquery-3.3.1.min.js"></script>
-	<script src="/js/main.js"></script>
-    <script>
-            const form = document.querySelector('form');
-            const emailError = document.querySelector('.emailerror');
-            const passwordError = document.querySelector('.passworderror');
-            
-            form.addEventListener('submit', async (e)=>{
-                e.preventDefault();
-                //reset errors
-                emailError.textContent =  '';
-                passwordError.textContent = '';
-                const email = form.email.value;
-                const password = form.password.value;
-                //console.log(email,password);
-                try{
-                  const result = await fetch('/signin', {
-                    method:'POST',
-                    body:JSON.stringify({email,password}),
-                    headers:{'Content-Type':'application/json'}
-                  });
-                  const data = await result.json();
-                  
-                  if(data.errors){
-                        emailError.textContent =  data.errors.email;
-                        passwordError.textContent = data.errors.password;
-                  }else{
-                      console.log(data);
-                  form.email.value="";
-                  form.password.value="";
-                  location.assign('/');
-                  }
-                  
-                }catch(err){
-                    console.log(err);
-                }
-                
-            });
-</script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-
-</html>
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body text-center">
+      <h1><img src="/veron3.jpg" height="210px" width="210px"></h1>
+      <p>Create an account or login</p>
+      <a href="/users/register" class="btn btn-primary btn-block mb-2"
+        >Register</a
+      >
+      <a href="/users/login" class="btn btn-primary btn-block">Login</a>
+    </div>
+  </div>
+</div>
